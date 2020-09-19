@@ -2,6 +2,8 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
+// const Excercise = require("./models/Excercise_model");
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -19,8 +21,11 @@ app.use(express.static("public"));
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populatedb", { useNewUrlParser: true });
 
 
-//create workouts
-db.Excercise.create({})
+require("./public/html-routes")(app);
+
+
+// create workouts
+db.Exercise.create({})
     .then(dbexcercise => {
         console.log(dbexcercise)
     }) 
@@ -30,7 +35,7 @@ db.Excercise.create({})
 
 //get last workout
 app.get("/api/workouts" , (req, res) => {
-    db.Excercise.find({})
+    db.Exercise.find({})
     .then(dblastworkout => {
         res.json(dblastworkout)
     })
@@ -40,7 +45,7 @@ app.get("/api/workouts" , (req, res) => {
 })
 //add/insert excercise need to modify later
 app.post("/api/workouts/:id", (req, res) => {
-    db.Excercise.create(body)
+    db.Exercise.create(body)
     .then(({id}) => db.findOneAndUpdate({}))
     .then(dbexcercise => {
         res.json(dbexcercise)
@@ -53,7 +58,7 @@ app.post("/api/workouts/:id", (req, res) => {
 
 //get workouts in Range, need to modify later
 app.get("/api/workouts/range" , (req, res) => {
-    db.Excercise.find({})
+    db.Exercise.find({})
     .then(dblastworkout => {
         res.json(dblastworkout)
     })
@@ -61,32 +66,6 @@ app.get("/api/workouts/range" , (req, res) => {
         res.json(error)
     })
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 app.listen(PORT, () => {
