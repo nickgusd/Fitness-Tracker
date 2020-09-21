@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3000;
 
 const db = require("./models");
-const { Exercise } = require("./models");
+// const { Exercise } = require("./models");
 
 const app = express();
 
@@ -24,7 +24,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb",
 });
 
 
-require("./public/html-routes")(app);
+require("./routes/html-routes")(app);
 
 
 // create workouts
