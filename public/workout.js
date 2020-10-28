@@ -8,7 +8,7 @@ async function initWorkout() {
 
     const workoutSummary = {
       date: formatDate(lastWorkout.day),
-      totalDuration: lastWorkout.totalDuration,
+      totalDuration: lastWorkout.exercises.reduce((sum,workout)=> sum + workout.duration, 0),
       numExercises: lastWorkout.exercises.length,
       ...tallyExercises(lastWorkout.exercises)
     };
@@ -26,9 +26,12 @@ function tallyExercises(exercises) {
       acc.totalSets = (acc.totalSets || 0) + curr.sets;
       acc.totalReps = (acc.totalReps || 0) + curr.reps;
     } else if (curr.type === "cardio") {
+      console.log(acc.totalDistance)
+      console.log(curr.distance)
       acc.totalDistance = (acc.totalDistance || 0) + curr.distance;
     }
-    return acc;
+   
+    return acc
   }, {});
   return tallied;
 }

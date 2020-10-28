@@ -29,6 +29,9 @@ const excerciseSchema = new Schema({
           sets: {
             type: Number
           },
+          distance: {
+            type: Number
+          }
         }
       ], 
     //   totalDuration: Number
@@ -55,14 +58,19 @@ const excerciseSchema = new Schema({
 //   }
 
 
+excerciseSchema.virtual("totalDuration").get(function () {  
+  return this.exercises.reduce((total, exercise) => { 
+    
+    return total + exercise.duration; }, 0); 
 
+});
 
-excerciseSchema.virtual("totalDuration").get(function () {
-    // "reduce" array of exercises down to just the sum of their durations
-    return this.exercises.reduce((total, exercise) => {
-      return total + exercise.duration;
-    }, 0);
-  });
+// excerciseSchema.virtual("totalDuration").get(function () {
+//     // "reduce" array of exercises down to just the sum of their durations
+//     return this.exercises.reduce((total, exercise) => {
+//       return total + exercise.duration;
+//     }, 0);
+//   });
 
 
 
