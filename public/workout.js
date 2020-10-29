@@ -85,3 +85,4 @@ function renderNoWorkoutText() {
 }
 
 initWorkout();
+ 
