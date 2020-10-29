@@ -14,7 +14,7 @@ This application has the ability to add new resistance workouts, new cardio work
 
 ## Link
 
- https://boiling-journey-67391.herokuapp.com/
+ https://mighty-dawn-52724.herokuapp.com/
 
  https://github.com/nickgusd/Fitness-Tracker
 
